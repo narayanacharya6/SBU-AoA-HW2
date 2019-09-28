@@ -105,6 +105,39 @@ This contradicts our initial assumption of $ e \notin E $. Hence $ e \in E $.
 \section{Question 2} Textbook [Kleinberg \& Tardos] Chapter 3, page 107, problem \#8. \\
 \textbf{Solution:} \\
 
+We need to prove that for a connected graph G there exists a positive natural number that c, for which
+\begin{center}
+	$ \frac{diam(G)}{apd(G)} \leq c $
+\end{center}
+
+In order to maximize the quantity on LHS we need to increase the diameter($ diam $) of graph $ G $ without increasing the average pairwise distance($ apd $) of $ G $. As we look to maximize LHS we might encounter a bound on it. \\
+
+Notice 2 things:
+\begin{enumerate}
+\item $ diam(G) $ is high when it has minimum number of edges i.e. for a graph with $ n $ nodes, the maximum number of edges in $ G $ are $ (n-1) $. This is the max possible diameter of $ G $.
+
+\item $ apd(G) $ is less when it has a lot of edges and getting from one node to another is less costly. For a connected graph, where each node has an edge to every other node, the $ apd $ to 1.
+\end{enumerate}
+
+Consider the following case where we start with a connected graph, $ G $, with $ n $ nodes. The $ apd(G) $ is 1 now. Next we look to add a path with $ k $ nodes to one of the nodes in $ G $. We deliberately connect it to just one node so as to maximize $ diam(G) $. The $ apd(G) $ will increase as well but we are looking to find a relation between $ n $ and $ k $ such that the rate at which $ diam(G) $ increases is faster than the rate at which $ apd(G) $ increases and eventually check if there is a bound on the difference at which there 2 functions grow.
+
+New diameter of $ G $ with $ (n+k) $ nodes:
+\begin{equation} \label{eq:2.1}
+diam(G) = k+1
+\end{equation}
+New average pairwise distance of $ G $ with $ (n+k) $ nodes:
+\begin{equation} \label{eq:2.2}
+apd(G) = \frac{\frac{n(n-1)}{2} + \frac{k(k+1)}{2} + (n-1)\times \left[\frac{(k+1)(k+2)}{2} - 1\right] + \frac{(k-1)(k)(k+1)}{6}}{\frac{(n+k)(n+k-1)}{2}}
+\end{equation}
+The first term in the numerator of equation \ref{eq:2.2} is the addition of distance for $ n $ nodes in the connected graph part of $ G $. The second term is addition of the distances for $ k $ nodes with the node in $ G $ where we connected the path. Third term is addition of distances for $ k $ nodes with all the other $ n-1 $ nodes. Finally we have the fourth term which is for distances of $ k $ nodes in the path with other nodes in the path. \\
+
+Simplifying \ref{eq:2.2} and dividing \ref{eq:2.1} by \ref{eq:2.2} we get:
+
+\begin{equation*}
+	\frac{diam(G)}{apd(G)} = \frac{6(k+1)(n+k)(n+k-1)}{6(n-1)(n+k(k+3)) + k(k+1)(k+5)}
+\end{equation*}
+
+Notice that the RHS has 2 variables $ n $ and $ k $, independent of each other. For a particular $ n $ we can come up with a $ k $ such that we exceed any given $ c $, as desired. Thus there is \textbf{no} bound on $ \frac{diam(G)}{apd(G)} $.
 \clearpage
 \section{Question 3} Textbook [Kleinberg \& Tardos] Chapter 3, page 107, problem \#12. \\
 \textbf{Solution:} \\
