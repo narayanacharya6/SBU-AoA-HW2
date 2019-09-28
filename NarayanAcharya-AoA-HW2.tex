@@ -58,6 +58,9 @@
 \lfoot{\leftmark}
 \rfoot{\thepage}
 
+% Do not indent pargraphs everywhere %
+\setlength\parindent{0pt}
+
 \renewcommand{\headrulewidth}{1pt}
 \renewcommand{\footrulewidth}{1pt}
 
@@ -84,8 +87,20 @@
 \clearpage
 
 \section{Question 1} Textbook [Kleinberg \& Tardos] Chapter 3, page 107, problem \#6. \\
+\textbf{Solution:} \\
 
-    
+We know that tree $ T $ is both a DFS tree and a BFS tree. So tree T should exhibit properties of both DFS and BFS trees. \\
+
+For a DFS tree for two nodes \textbf{not} to be connected by an existing edge, one must be an ancestor of the other. [See Kleinberg \& Tardos, proof 3.7, page 85] \\
+
+For a BFS tree for two nodes to be connected, their distance from another node $ w $ in $ T $ can differ by at most 1. [See Kleinberg \& Tardos, proof 3.4, page 81] \\
+
+Suppose, there exists an edge $ e $ that connects nodes $ u $ and $ v $ in our graph $ G $ but does \textbf{NOT} belong to edges $ E $ of tree $ T $, i.e. $ e=(u,v) $ and $ e \notin E $. \\
+
+As $ u $ and $ v $ are connected by an edge \textbf{not} in $ T $, one of them is an ancestor to the other. Without loss of generality, assume node $ u $ is an ancestor of $ v $. Given $ T $ is also BFS tree, distance from random node $ w $ in $ T $ to $ u $ and $ v $ can differ by a maximum of 1. Thus $ u $ has to be a direct parent of $ v $. This implies that edge $ e $ connecting them must be a part of $ T $. \\
+
+This contradicts our initial assumption of $ e \notin E $. Hence $ e \in E $.
+   
 \clearpage
 \section{Question 2} Textbook [Kleinberg \& Tardos] Chapter 3, page 107, problem \#8. \\
 
