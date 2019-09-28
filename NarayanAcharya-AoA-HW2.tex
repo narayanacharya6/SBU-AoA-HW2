@@ -103,21 +103,63 @@ This contradicts our initial assumption of $ e \notin E $. Hence $ e \in E $.
    
 \clearpage
 \section{Question 2} Textbook [Kleinberg \& Tardos] Chapter 3, page 107, problem \#8. \\
-
+\textbf{Solution:} \\
 
 \clearpage
 \section{Question 3} Textbook [Kleinberg \& Tardos] Chapter 3, page 107, problem \#12. \\
+\textbf{Solution:} \\
+
+We can use directed graphs with topological ordering to judge if the information presented to the ethnographers is internally consistent or not. \\
+
+For every person $ P_i $, consider their date of birth and the date of death be denoted by $ b_i $ and $ d_i $. \\
+
+The below algorithm returns $ True $ if the information presented to the ethnographers is internally consistent else returns $ False $. First we construct a directed graph starting with an empty graph and adding nodes along with their edges based on information received for each person $ P_i $. For each fact we add additional edges to our graph. If a fact is of type 1 i.e. person $P_i$ died before person $ P_j $, we add an edge $ (d_i, b_j) $ signifying that death of $ P_i $ precedes death of $ P_j $. On similar lines, if fact is of type 2 i.e. lifespans of persons $ P_i $ and $ P_j $ overlapped we add edges $ (b_i, d_j) $ and $ (b_j, d_i) $ to our graph. \\ 
+
+Finally we check if our graphs has any cycles. If our graph does have at least one cycle then there is no date that can be put first on our timeline, indicating that some information presented to us is inconsistent. If our graph does \textbf{NOT} have a cycle that means our graphs is a DAG and has topological ordering and can be considered internally consistent.
+
+\begin{breakablealgorithm}
+	\caption{Algorithm to check consistency of time series information}
+	\begin{algorithmic}[1]
+		\Procedure{Check}{List $People$, List $Facts$}\Comment{Given information of of people and facts.}
+		\State Graph $ G \gets \phi$ \Comment{Initialize empty directed graph to hold facts about people}
+		\For{$ P_i $ in $ People $} \Comment{Store birth and death dates of People}
+			\State $ b_i \gets $ birth of $ P_i $
+			\State $ d_i \gets $ death of $ P_i $
+			\State Add nodes $ b_i $ and $ d_i $ to $ G $
+			\State Add edge $ e \gets (b_i, d_i) $ to $ G $
+		\EndFor
+		
+		\For{$ F_i $ in $ Facts $} \Comment{Extract information from facts}
+			\If {$F_i$ about death of $ P_i $ before birth of $ P_j $}
+				\State Add edge $ e \gets (d_i, b_j) $ to $ G $
+			\Else \If {$F_i$ life of $ P_i $ overlapped with life $ P_j $}
+				\State Add edge $ e_1 \gets (b_i, d_j) $ to $ G $
+				\State Add edge $ e_2 \gets (b_j, d_i) $ to $ G $
+			\EndIf
+			\EndIf
+		\EndFor
+		
+		\If{$ G $ is a Directed Acyclic Graph}
+			\Return $ True $
+		\EndIf
+		
+		\Return $ False $
+		\EndProcedure
+	\end{algorithmic}
+\end{breakablealgorithm}
 
 
 \clearpage
 \section{Question 4} Textbook [Kleinberg \& Tardos] Chapter 4, page 190, problem \#8. \\
- 
+ \textbf{Solution:} \\
 
 \clearpage
 \section{Question 5} Textbook [Kleinberg \& Tardos] Chapter 4, page 190, problem \#21. \\
+\textbf{Solution:} \\
 
 \clearpage
 \section{Question 6} Textbook [Kleinberg \& Tardos] Chapter 4, page 190, problem \#27. \\
+\textbf{Solution:} \\
 
 \clearpage
 \bibliographystyle{unsrt}
@@ -125,10 +167,6 @@ This contradicts our initial assumption of $ e \notin E $. Hence $ e \in E $.
 	\bibitem{BinomialTheorem} 
 	Binomial Theorem,
 	\\\texttt{https://en.wikipedia.org/wiki/Binomial\_theorem}
-	
-	\bibitem{YoungTableau} 
-	Young Tableau,
-	\\\texttt{https://en.wikipedia.org/wiki/Young\_tableau}
 	
 \end{thebibliography}
 
