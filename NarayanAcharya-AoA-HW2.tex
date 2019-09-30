@@ -186,6 +186,12 @@ Finally we check if our graphs has any cycles. If our graph does have at least o
 \section{Question 4} Textbook [Kleinberg \& Tardos] Chapter 4, page 190, problem \#8. \\
  \textbf{Solution:} \\
 
+We prove this by way of contradiction. Let us suppose that there are two distinct minimum spanning trees $ T_1 $ and $ T_2 $ for a graph $ G $. Given that these trees are distinct there has to be at least one edge, say $ e $, that exists in one tree but not the other. Without loss of generality, assume that edge $ e $ exists in $ T_1 $ but not in $ T_2 $. \\
+
+Now, adding edge $ e $ to $ T_2 $ will create a cycle in $ T_2 $. Given that there is no restriction as such on which edge from $ G $ $ e $ can be, we choose the one with maximum edge weight. Thus we have an edge with maximum weight in a cycle in a minimum spanning tree. This contradicts Cycle Property of minimum spanning tree which states that such an edge cannot be on any mimimum spanning tree. [See Kleinberg \& Tardos, proof 4.20, page 147] \\
+
+This contradicts our assumption that edge $ e $ is in either $ T_1 $ or $ T_2 $ and hence we can confirm that $ T_1 $ and $ T_2 $ are the same tree and graph $ G $ has unique minimum spanning tree.
+
 \clearpage
 \section{Question 5} Textbook [Kleinberg \& Tardos] Chapter 4, page 190, problem \#21. \\
 \textbf{Solution:} \\
