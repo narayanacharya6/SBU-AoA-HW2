@@ -198,7 +198,7 @@ This contradicts our assumption that edge $ e $ is in either $ T_1 $ or $ T_2 $ 
 
 A minimum spanning tree will have $ (n-1) $ edges if there are $ n $ nodes in the tree. We are getting a \textit{near} tree, with $ (n+8) $ edges, as input and need to output a minimum spanning tree which has $ (n-1) $ edges. That means we need to get rid of the extra 9 edges in the \textit{near} tree. These 9 edges are the ones contributing to some cycle in the \textit{near} tree. \\
 
-In order to find a cycle we can use any of the graph traversal algorithms, BFS or DFS, and modify to keep track of cycles as we walk through the nodes. As soon as we detect a cycle, we drop the edge with maximum weight in that cycle. We can do this because of the Cycle Property [See Kleinberg \& Tardos, proof 4.20, page 147] and we are given that all edge weight are distinct. If we do this 9 times, we should be left with the minimum spanning tree we require. \\
+In order to find a cycle we can use any of the graph traversal algorithms, BFS or DFS, and modify to keep track of cycles as we walk through the nodes\cite{GeeksforGeeks}. We can keep detect cycles by keeping track of nodes that we encounter and are already marked as explored. Except for the parent of a node, if we encounter and explored node from any node we have hit a cycle. As soon as we detect a cycle, we drop the edge with maximum weight in that cycle. We can do this because of the Cycle Property [See Kleinberg \& Tardos, proof 4.20, page 147] and we are given that all edge weights are distinct. If we do this 9 times, we should be left with the minimum spanning tree we require. \\
 
 Graph traversal and max edge-weight detection has a complexity of $ O(m+n) $ where $ m $ is the number of edges and $ n $ is the number of nodes in the graph. In this case we have $ m $ bound by $ n $, i.e $ m \leq (n+8) $ for our \textit{near} tree. Implying that our algorithm is bound by $ n $ as $ O(n) $. (We only need to apply the same thing a constant number of times, 9, and hence we disregard it.) \\
 
@@ -209,9 +209,9 @@ Graph traversal and max edge-weight detection has a complexity of $ O(m+n) $ whe
 \clearpage
 \bibliographystyle{unsrt}
 \begin{thebibliography}{9}
-	\bibitem{BinomialTheorem} 
-	Binomial Theorem,
-	\\\texttt{https://en.wikipedia.org/wiki/Binomial\_theorem}
+	\bibitem{GeeksforGeeks} 
+	Detect cycle in an undirected graph,
+	\\\texttt{https://www.geeksforgeeks.org/detect-cycle-undirected-graph/}
 	
 \end{thebibliography}
 
