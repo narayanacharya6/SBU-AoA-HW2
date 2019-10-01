@@ -188,7 +188,7 @@ Finally we check if our graphs has any cycles. If our graph does have at least o
 
 We prove this by way of contradiction. Let us suppose that there are two distinct minimum spanning trees $ T_1 $ and $ T_2 $ for a graph $ G $. Given that these trees are distinct there has to be at least one edge, say $ e $, that exists in one tree but not the other. Without loss of generality, assume that edge $ e $ exists in $ T_1 $ but not in $ T_2 $. \\
 
-Now, adding edge $ e $ to $ T_2 $ will create a cycle in $ T_2 $. Given that there is no restriction as such on which edge from $ G $ $ e $ can be, we choose the one with maximum edge weight. Thus we have an edge with maximum weight in a cycle in a minimum spanning tree. This contradicts Cycle Property of minimum spanning tree which states that such an edge cannot be on any mimimum spanning tree. [See Kleinberg \& Tardos, proof 4.20, page 147] \\
+Now, adding edge $ e $ to $ T_2 $ will create a cycle in $ T_2 $. Given that there is no restriction as such on which edge from $ G $ $ e $ can be, we choose the one with maximum edge weight. Thus we have an edge with maximum weight in a cycle in a minimum spanning tree. This contradicts Cycle Property of minimum spanning tree which states that such an edge cannot be on any minimum spanning tree. [See Kleinberg \& Tardos, proof 4.20, page 147] \\
 
 This contradicts our assumption that edge $ e $ is in either $ T_1 $ or $ T_2 $ and hence we can confirm that $ T_1 $ and $ T_2 $ are the same tree and graph $ G $ has unique minimum spanning tree.
 
@@ -205,6 +205,14 @@ Graph traversal and max edge-weight detection has a complexity of $ O(m+n) $ whe
 \clearpage
 \section{Question 6} Textbook [Kleinberg \& Tardos] Chapter 4, page 190, problem \#27. \\
 \textbf{Solution:} \\
+
+For 2 minimum spanning tree, say $ T_1 $ and $ T_2 $, that are neighbors are connected by an edge in $ H $ as per definition of $ H $ in this problem. \\
+
+Consider the following sequence of steps: We pick an edge in $ T_2 $ that does not exist in $ T_1 $ and add it to $ T_1 $. This introduces a cycle in $ T_1 $. We can delete any other edge on the cycle, barring the one we just added. Notice that when we remove this edge, the edge we removed cannot exist in $ T_2 $, else it would have been a cycle in $ T_2 $ in the first place. Thus we have removed the edge that did not exists in $ T_2 $ and added the missing edge in $ T_1 $ to it and given they were neighbors, differing by one edge, now both the trees are same. The sequence of steps can be imagined as traversing an edge in $ H $, to go from one minimum spanning tree to its neighbor. \\
+
+If two minimum spanning trees are, say, $ d $ distance apart. We will need to do the above sequence of steps $ d $ times. At each step, we will have a minimum spanning tree which is a neighbor of the minimum spanning tree we started with. Thus, there will exist an edge between these trees in the graph $ H $. \\
+
+Thus, we can conclude that 2 minimum spanning trees that are $ d $ distance apart will be connected in $ H $ by path of length $ d $ which confirms that $ H $ is a connected graph.
 
 \clearpage
 \bibliographystyle{unsrt}
